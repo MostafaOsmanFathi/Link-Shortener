@@ -1,24 +1,52 @@
 package dev.mostafa.Link_Shortener;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class ShortLinkRepository {
 
-    @Autowired
-    private DataSource dataSource;
+    private static final Logger logger = LoggerFactory.getLogger(ShortLinkRepository.class);
 
-    ShortLinkRepository() {
+    private final DataSource dataSource;
+
+    @Autowired
+    ShortLinkRepository(DataSource dataSource) {
+        this.dataSource = dataSource;
+        runSchemaSql();
     }
+
+    private void runSchemaSql() {
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = new BufferedReader(new InputStreamReader(
+                    new ClassPathResource("database-schema.sql").getInputStream()))
+                    .lines()
+                    .collect(Collectors.joining("\n"));
+
+            for (String statement : sql.split(";")) {
+                if (!statement.trim().isEmpty()) {
+                    try (Statement stmt = connection.createStatement()) {
+                        stmt.execute(statement.trim());
+                    }
+                }
+            }
+            logger.info("data base schema created successfully");
+        } catch (Exception ex) {
+            logger.error(ex.getMessage());
+        }
+    }
+
 
     private ShortLink map(ResultSet rs) throws SQLException {
         return new ShortLink(
