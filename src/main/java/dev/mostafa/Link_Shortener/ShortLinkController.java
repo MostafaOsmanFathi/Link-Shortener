@@ -30,4 +30,9 @@ public class ShortLinkController {
     public String resolveLinkByCode(@PathVariable String code) {
         return shortLinkService.getByShortCode(code).getOriginalUrl();
     }
+
+    @DeleteMapping("/{code}")
+    public boolean deleteShortLink(@PathVariable String code) {
+        return shortLinkService.deleteShortLinkByCode(code);
+    }
 }

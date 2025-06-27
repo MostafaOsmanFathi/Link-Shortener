@@ -124,4 +124,19 @@ public class ShortLinkRepository {
 
         return null;
     }
+
+    public boolean deleteLinkByCode(String code) {
+        String sql = "DELETE FROM short_links WHERE short_link_code = ?";
+
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, code);
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+        return false;
+    }
 }

@@ -47,4 +47,8 @@ public class ShortLinkService {
         return shortLinkRepository.getByOriginalUrl(url);
     }
 
+    public boolean deleteShortLinkByCode(String code) {
+        return shortLinkRepository.deleteLinkByCode(code);
+    }
+
 }
