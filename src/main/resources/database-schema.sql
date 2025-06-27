@@ -1,7 +1,3 @@
-CREATE DATABASE IF NOT EXISTS linkshortenerdb;
-
-USE linkshortenerdb;
-
 CREATE TABLE IF NOT EXISTS short_links
 (
     id              INT AUTO_INCREMENT PRIMARY KEY,
