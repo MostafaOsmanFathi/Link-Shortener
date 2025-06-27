@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Link Shortener</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<h1>🔗 Link Shortener</h1>
+
+<div class="form-group">
+    <input type="text" id="originalUrl" placeholder="Paste a URL to shorten">
+    <button onclick="createShortLink()">Shorten</button>
+</div>
+
+<h2>📄 All Links</h2>
+<div class="link-list" id="linkList">
+    <!-- Links will appear here -->
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

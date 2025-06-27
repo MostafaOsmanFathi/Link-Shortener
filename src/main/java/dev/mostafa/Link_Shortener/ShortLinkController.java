@@ -2,6 +2,7 @@ package dev.mostafa.Link_Shortener;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class ShortLinkController {
 
     @PostMapping("/")
     public ShortLink createShortLink(@RequestBody String originalUrl) {
-        return shortLinkService.createShortLink(originalUrl);
+        return shortLinkService.createShortLink(originalUrl.substring(1, originalUrl.length() - 1));
     }
 
     @GetMapping("/{id}")
@@ -27,8 +28,10 @@ public class ShortLinkController {
     }
 
     @GetMapping("/resolve/{code}")
-    public String resolveLinkByCode(@PathVariable String code) {
-        return shortLinkService.getByShortCode(code).getOriginalUrl();
+    public RedirectView resolveLinkByCode(@PathVariable String code) {
+        String OriginalUrl = shortLinkService.getByShortCode(code).getOriginalUrl();
+        System.out.println(OriginalUrl);
+        return new RedirectView(OriginalUrl);
     }
 
     @DeleteMapping("/{code}")
