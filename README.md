@@ -76,8 +76,44 @@ http://localhost:8080
 
 ---
 
-## 🧪 API Usage
+## 🌐 How to Use the Link Shortener Website
 
-### ➕ Create a Short Link
+Once the application is running at `http://localhost:8080`, you can use the frontend website to shorten and visit links easily.
 
-TBD...
+### 📝 Steps to Shorten a Link:
+
+1. **Open the Website**
+
+   * Navigate to: `http://localhost:8080`
+
+2. **Enter the Original URL**
+
+   * In the input field, paste the URL you want to shorten (e.g., `https://example.com`).
+
+3. **Click the "Shorten" Button**
+
+   * The site will call the backend API and generate a short link.
+
+4. **Copy the Shortened URL**
+
+   * A short version of your URL will be displayed. Copy it and use it anywhere.
+
+---
+
+### 🔗 Using the Shortened Link:
+
+* Paste the short link into your browser (e.g., `http://localhost:8080/abc123`).
+* You'll be automatically redirected to the original URL.
+
+---
+
+### ❗ Notes:
+
+* Make sure the backend is running before using the website.
+* The site and API must be on the same port unless CORS is configured.
+* If you package the app as an `.exe` or JAR, double-clicking it should open the service.
+
+---
+
+Enjoy a smooth and minimal URL shortening experience!
+
