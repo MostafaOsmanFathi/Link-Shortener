@@ -1,5 +1,7 @@
-package dev.mostafa.Link_Shortener;
+package dev.mostafa.Link_Shortener.controller;
 
+import dev.mostafa.Link_Shortener.model.ShortLink;
+import dev.mostafa.Link_Shortener.service.ShortLinkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
@@ -41,6 +43,9 @@ public class ShortLinkController {
         logger.info("Resolving short link with code: {}", code);
         String originalUrl = shortLinkService.getByShortCode(code).getOriginalUrl();
         logger.info("Redirecting to: {}", originalUrl);
+        if (!originalUrl.startsWith("http://") && !originalUrl.startsWith("https://")) {
+            originalUrl = "https://" + originalUrl;
+        }
         return new RedirectView(originalUrl);
     }
 

@@ -1,5 +1,7 @@
-package dev.mostafa.Link_Shortener;
+package dev.mostafa.Link_Shortener.service;
 
+import dev.mostafa.Link_Shortener.model.ShortLink;
+import dev.mostafa.Link_Shortener.Repository.ShortLinkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

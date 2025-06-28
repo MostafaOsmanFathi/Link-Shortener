@@ -1,4 +1,4 @@
-package dev.mostafa.Link_Shortener;
+package dev.mostafa.Link_Shortener.model;
 
 public class ShortLink {
     int id;

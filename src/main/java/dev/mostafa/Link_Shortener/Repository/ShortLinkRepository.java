@@ -1,5 +1,6 @@
-package dev.mostafa.Link_Shortener;
+package dev.mostafa.Link_Shortener.Repository;
 
+import dev.mostafa.Link_Shortener.model.ShortLink;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
